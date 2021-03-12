@@ -1,0 +1,21 @@
+/* Спецификация */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+/* Header */
+.header {
+    background-color: #2d3136;
+    padding: 55px 10px;
+}
+
+.form {
+    background-color: #2d3136;
+    padding: 20px 0;
+}
+
+.email-img {
+    margin-top: 20px;
+    width: 270px;
+}
