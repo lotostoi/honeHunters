@@ -10,12 +10,121 @@ body {
     padding: 55px 10px;
 }
 
+
+.link-to-main {
+    transition: transform .3s;
+}
+
+.link-to-main:hover {
+    transform: scale(1.01);
+}
+.link-to-main:active {
+    transform: scale(0.99);
+}
+
+.logo {
+    max-width: 300px;
+}
+/* form */
+
 .form {
     background-color: #2d3136;
     padding: 20px 0;
 }
-
 .email-img {
-    margin-top: 20px;
-    width: 270px;
+    width: 100%;
+    max-width: 270px;
 }
+
+.fields {
+    margin-top: 20px;
+}
+.field {
+    margin-bottom: 70px;
+}
+
+.field__title {
+    font-size: 31px;
+    color: #d7d7d7;
+    font-weight: 500;
+}
+.field__span {
+    margin-left: 10px;
+    color: #be393b;
+}
+
+.field__input {
+    min-height: 100px;
+    background-color: transparent;
+    border: 1px solid #4c4f53;
+    border-radius: 8px;
+    padding: 38px 30px;
+    color: #d7d7d7;
+    font-size: 31px;
+    outline: none;
+}
+.field__input.error {
+    background-color: #2f3136;
+    border: 1px solid #be393b;    
+}
+
+.button {
+    width: 220px;
+    height: 90px;
+    font-weight: 700;
+    color: #d7d7d7;
+    background-color: #be393b;
+    font-size: 31px;
+    margin: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+.button:hover {
+    color: #eeeded;
+    background-color: #a02628;
+}
+.button:active {
+    transform: scale(0.99);
+}
+
+/* Messages */
+
+.messages__h1 {
+    margin: 125px 0;
+    font-size:  31px;
+    color:#37414e;
+}
+
+.message {
+    
+}
+
+.message__name {
+    min-height: 80px;
+    font-size: 41px;
+    font-weight: 500;
+    color: #eeeded;
+    margin: 0;
+}
+
+div:nth-of-type(odd) > h2.message__name {
+    background-color: #37414e;
+}
+div:nth-of-type(even) > h2.message__name  {
+    background-color: #58ad52;
+}
+
+.message__body {
+    min-height: 310px;
+    padding: 50px 30px;
+
+}
+
+div:nth-of-type(odd) > .message__body {
+    background-color: #e9eef3;
+}
+div:nth-of-type(even) > .message__body  {
+    background-color: #deebde;
+}
+
