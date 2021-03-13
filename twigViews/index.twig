@@ -1,0 +1,50 @@
+{% extends "mainLayuot.twig" %}
+{% block content %}
+	    <section class="form">
+        <form class="container" id="form">
+            <div class="row d-flex justify-content-center mb-5">
+                <div class="col-lg-4 col-6 justify-content-center justify-content-md-start">
+                    <img src="./img/contact.png" class="email-img col-3 " alt="logo">
+                </div>
+            </div>
+            <div class="row fields" id="from">
+                <div class="column col-lg-5 left">
+                    <label class="column col-lg-12 field">
+                        <p class="field__title">Имя <span class="field__span">*</span></p>
+                        <input class="column col-lg-12 field__input" type="text" name="name">
+                    </label>
+                    <label class="column col-lg-12 field">
+                        <p class="field__title">E-Mail <span class="field__span">*</span></p>
+                        <input class="column col-lg-12 field__input " type="email" name="email">
+                    </label>
+                </div>
+                <div class="mh-100 column col-lg-6 right ml-auto">
+                    <label class="column col-lg-12 field h-100 ">
+                        <p class="field__title">Коментарий <span class="field__span">*</span></p>
+                        <textarea class="column col-lg-12 field__input h-75" type="text" name="message"></textarea>
+                    </label>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-lg-end justify-content-start">
+                <button type="button" class="w-100 col-lg-3  button">Отправить</button>
+            </div>
+        </form>
+    </section>
+    <section class="messages">
+        <div class="container">
+            <h1 class="row d-flex justify-content-center messages__h1">Выводим коментарии</h1>
+            <div class="row messages__content pl-lg-5 pr-lg-5 ">
+            {% for message in messages %}
+                <div class="col-lg-4 col-md-6 message d-flex flex-column justify-content-center" data-mesid="{{message.id}}">
+                    <h2 class="w-100 row d-flex  justify-content-center align-items-center message__name ">{{message.name}}</h2>
+                    <div class="row message__body h-100">
+                        <p class="email w-100">{{message.email}}</p>
+                        <p class="message">{{message.message}}</p>
+                    </div>
+                    <div class = "delete" data-id="{{message.id}}">&times;</div>
+                </div>
+            {% endfor %}  
+            </div>
+        </div>
+    </section>
+{% endblock %}

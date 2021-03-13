@@ -9,27 +9,29 @@ body {
     background-color: #2d3136;
     padding: 55px 10px;
 }
-
-
 .link-to-main {
     transition: transform .3s;
 }
 
 .link-to-main:hover {
-    transform: scale(1.01);
+    transform: scale(1.05);
+   
 }
 .link-to-main:active {
-    transform: scale(0.99);
+    transform: scale(0.95);
 }
 
 .logo {
     max-width: 300px;
+    max-height: 55px;
 }
+
+
 /* form */
 
 .form {
     background-color: #2d3136;
-    padding: 20px 0;
+    padding: 20px 0 60px;
 }
 .email-img {
     width: 100%;
@@ -60,12 +62,12 @@ body {
     border-radius: 8px;
     padding: 38px 30px;
     color: #d7d7d7;
-    font-size: 31px;
+    font-size: 27px;
     outline: none;
 }
 .field__input.error {
     background-color: #2f3136;
-    border: 1px solid #be393b;    
+    border: 1px solid #be393b;
 }
 
 .button {
@@ -74,12 +76,20 @@ body {
     font-weight: 700;
     color: #d7d7d7;
     background-color: #be393b;
-    font-size: 31px;
+    font-size: 27px;
     margin: 10px 30px;
     border: none;
     border-radius: 5px;
     outline: none;
 }
+
+.button.block {
+    cursor: not-allowed;
+    color: #929090;
+    background-color: #503132;
+  
+}
+
 .button:hover {
     color: #eeeded;
     background-color: #a02628;
@@ -88,43 +98,143 @@ body {
     transform: scale(0.99);
 }
 
+.button.block:hover {
+    color: #929090;
+    background-color: #503132;
+}
+.button.block:active {
+    transform: scale(1);
+}
+
 /* Messages */
 
 .messages__h1 {
     margin: 125px 0;
-    font-size:  31px;
-    color:#37414e;
+    font-size: 38px;
+    color: #37414e;
+}
+.messages__content {
+    padding: 0 0 110px;
 }
 
 .message {
-    
+    margin: 15px 0;
+    position: relative;
+}
+
+.delete {
+    position: absolute;
+    bottom: 10px;
+    right: 25px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgba(44, 53, 61, 0.739);
+    display: flex;
+    opacity: 0;
+    transition: opacity .3s;
+    justify-content: center;
+    align-items: center;
+}
+.delete:hover {
+    background-color: rgba(112, 42, 42, 0.952);
+}
+.delete:active {
+    transform: scale(.95);
+}
+
+.message:hover .delete {
+    opacity: 1;
 }
 
 .message__name {
     min-height: 80px;
-    font-size: 41px;
+    font-size: 33px;
     font-weight: 500;
     color: #eeeded;
     margin: 0;
+    text-align: center;
 }
 
 div:nth-of-type(odd) > h2.message__name {
     background-color: #37414e;
 }
-div:nth-of-type(even) > h2.message__name  {
+div:nth-of-type(even) > h2.message__name {
     background-color: #58ad52;
 }
 
 .message__body {
-    min-height: 310px;
+    flex-direction: column;
     padding: 50px 30px;
+    display: flex;
+    box-sizing: border-box;
+    margin: 0;
+}
 
+.message__body > .email {
+    display: flex;
+    justify-content: center;
+    font-size: 33px;
+    word-break: break-all;
+    text-align: center;
+    min-height: 130px;
+}
+.message__body > .message {
+    font-size: 28px;
+    text-align: center;
 }
 
 div:nth-of-type(odd) > .message__body {
     background-color: #e9eef3;
 }
-div:nth-of-type(even) > .message__body  {
+div:nth-of-type(even) > .message__body {
     background-color: #deebde;
 }
+div:nth-of-type(odd) > .message__body > p.email {
+    color: #6d737b;
+    font-weight: 700;
+}
+div:nth-of-type(odd) > .message__body > p.message {
+    color: #767582;
+    font-weight: 400;
+}
 
+div:nth-of-type(even) > .message__body > p.email {
+    color: #58ad52;
+    font-weight: 700;
+}
+div:nth-of-type(even) > .message__body p.message {
+    color: #768275;
+    font-weight: 400;
+}
+
+/* footer */
+
+.footer {
+    background-color: #2d3136;
+    padding: 30px 10px 50px;
+}
+.link-to-sn {
+    transition: transform 0.3s;
+    margin-left: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.link-to-sn > img {
+    width: 100%;
+    height: 100%;
+}
+
+.link-to-sn:hover {
+    transform: scale(1.05);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+.link-to-sn:active {
+    transform: scale(0.95);
+}

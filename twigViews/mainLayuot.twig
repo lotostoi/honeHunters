@@ -1,0 +1,36 @@
+{% extends "layout.twig" %}
+
+{% block header %}
+ <header class="header">
+        <div class="container">
+            <div class="row pr-2">
+                <div class="row col-12 col-md-4">
+                    <a href="/" class="col-12 link-to-main">
+                        <img src="./img/logo.png" class="col-12 logo" alt="logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+{% block footer %}
+	    <footer class="footer">
+        <div class="container">
+            <div class="row flex-column flex-md-row align-items-center justify-content-center">
+                <div class="row col-12 col-lg-4 d-flex justify-content-center">
+                    <a href="/" class="col-12 d-flex justify-content-center link-to-main">
+                        <img src="./img/logo.png" class="col-12 logo" alt="logo">
+                    </a>
+                </div>
+                <div class="row d-flex col-12 col-lg-3 mt-3 mt-md-0 ml-lg-auto d-flex justify-content-center">
+                    <a href="#" class="ml-lg-auto link-to-sn">
+                        <img src="./img/wk.png" class="logo" alt="logo">
+                    </a>
+                    <a href="#" class="ml-5 link-to-sn">
+                        <img src="./img/fb.png" class="logo" alt="logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}

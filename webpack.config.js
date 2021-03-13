@@ -100,30 +100,20 @@ const conf = {
     hints: false,
   },
   optimization: {
- /*    splitChunks: {
-      // include all types of chunks
-     // chunks: 'all',
-      minSize: 10000,
-      maxSize: 250000,
-    }, */
     minimize: isProduction,
     minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
   },
   plugins: [
     new CleanWebpackPlugin(/* { /* cleanStaleWebpackAssets: false /} */),
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: 'css/[name][hash].css',
-   //   chunkFilename: 'css/[id][hash].css',
+    
+      filename: 'css/[name].css',
+  
     }),
     new HTML({
       template: 'index.html',
       minify: false,
     }),
-/*     new CopyPlugin({
-      patterns: [{ from: '.htaccess' }, { from: 'favicon.ico' }],
-    }), */
     new webpack.DefinePlugin({
       isDevelopment: isDevelopment,
       isProduction: isProduction,
@@ -133,7 +123,7 @@ const conf = {
     overlay: true,
     proxy: {
       '**': {
-        target: 'http://php.ru/',
+        target: 'http://honehunters/',
         secure: false,
         changeOrigin: true,
       },
