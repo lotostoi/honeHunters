@@ -57,13 +57,13 @@ export default class ValidForm {
     }
     buttonLoad() {
         this.buttonBlock()
-        this.button.querySelector('span').classList.add('block')
-        this.button.querySelector('div').classList.remove('block')
+        this.button.querySelector('.title').classList.add('block')
+        this.button.querySelector('.loader').classList.remove('block')
     }
     buttonOnLoad() {
         this.buttonUnBlock()
-        this.button.querySelector('span').classList.remove('block')
-        this.button.querySelector('div').classList.add('block')
+        this.button.querySelector('.title').classList.remove('block')
+        this.button.querySelector('.loader').classList.add('block')
     }
     clearForm() {
         this.form.reset()
@@ -82,7 +82,6 @@ export default class ValidForm {
         setTimeout(() => { el.classList.add('block') }, 4000)
     }
     _validField(name = null, value = null) {
-        console.log(11)
         this.valid = false
         if (!name) return
         const field = this.fieldsForValid.find(el => el.name === name)

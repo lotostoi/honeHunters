@@ -126,7 +126,7 @@ body {
     transform: scale(1);
 }
 
-.button > div.block {
+.button > .spinner-border.block {
     display: none;
 }
 .button > span.block {
