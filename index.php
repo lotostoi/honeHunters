@@ -1,7 +1,7 @@
 <?php
-require_once '../vendor/autoload.php';
+require_once './vendor/autoload.php';
 
-$config = include '../config/config.php';
+$config = include './config/config.php';
 
 use app\engine\App;
 

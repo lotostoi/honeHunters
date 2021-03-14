@@ -1,3 +1,8 @@
+
+import Alert from './Alert'
+const AppAlert = new Alert({ container: document.querySelector('.status') })
+
+
 export const getAllMessages = async () => {
     const response = await fetch('index/all')
     const messages = await response.json()
@@ -27,24 +32,34 @@ const insertMessage = (container, messages) => {
 }
 
 export const addMessage = async (container, form) => {
-    const add = await fetch('index/add', {
-        method: 'POST',
-        body: new FormData(form)
-    })
-    const message = await add.json()
-    insertMessage(container, message)
-    return true
+    try {
+        const add = await fetch('index/add', {
+            method: 'POST',
+            body: new FormData(form)
+        })
+        const message = await add.json()
+        insertMessage(container, message)
+        AppAlert.showMessage(true, `Сообение от успешно добавленно!`)
+    } catch (e) {
+        AppAlert.showMessage(false, `Ошибка при добавлении сообщения!`)
+    }
+
 }
 
 export const delMessage = async (container, id) => {
-    const el = container.querySelector(`[data-mesid="${id}"]`)
-    const body = new FormData()
-    body.append('id', id)
-    const add = await fetch('index/del', {
-        method: 'POST',
-        body
-    })
-    const message = await add.json()
-    el.remove()
-    return true
+    try {
+        const el = container.querySelector(`[data-mesid="${id}"]`)
+        const body = new FormData()
+        body.append('id', id)
+        const add = await fetch('index/del', {
+            method: 'POST',
+            body
+        })
+        await add.json()
+        el.remove()
+        AppAlert.showMessage(true, `Сообение от успешно удалено!`)
+    } catch (e) {
+        AppAlert.showMessage(false, `Ошибка при удалении сообщения!`)
+        console.log(e)
+    }
 }

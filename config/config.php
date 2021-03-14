@@ -2,7 +2,7 @@
 
 return [
     'namespaces_Controllers' => "app\\controllers\\",
-    'templates' => $_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/../twigViews/",
+    'templates' => $_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/" . "twigViews/",
     'components' => [
         'Db' => [
             'class' => app\engine\Db::class,
@@ -10,7 +10,7 @@ return [
             'host' => 'localhost:3306',
             'login' => 'root',
             'password' => 'root',
-            'database' => 'hunters',
+            'database' => 'honehunters',
             'charset' => 'utf8'
         ],
         'Request' => ['class' => app\engine\Request::class],

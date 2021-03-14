@@ -4,6 +4,26 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
+.status {
+    position: fixed;
+    z-index: 500;
+    top:0;
+    width: 100%;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+.status.success {
+    background-color: #58ad52;
+    opacity: 1;
+}
+.status.error {
+    background-color: #af4643;
+    opacity: 1;
+}
+
+
+
 /* Header */
 .header {
     background-color: #2d3136;
@@ -106,6 +126,13 @@ body {
     transform: scale(1);
 }
 
+.button > div.block {
+    display: none;
+}
+.button > span.block {
+    display: none;
+}
+
 /* Messages */
 
 .messages__h1 {
@@ -132,23 +159,21 @@ body {
     color: white;
     cursor: pointer;
     border-radius: 50%;
-    background-color: rgba(44, 53, 61, 0.739);
+    background-color: rgba(44, 53, 61, 0.144);
     display: flex;
-    opacity: 0;
     transition: opacity .3s;
     justify-content: center;
     align-items: center;
 }
 .delete:hover {
-    background-color: rgba(112, 42, 42, 0.952);
+    background-color: rgba(44, 53, 61, 0.144);
+    background-color: rgba(255, 42, 42, 0.952);
 }
 .delete:active {
     transform: scale(.95);
 }
 
-.message:hover .delete {
-    opacity: 1;
-}
+
 
 .message__name {
     min-height: 80px;
@@ -180,11 +205,14 @@ div:nth-of-type(even) > h2.message__name {
     font-size: 33px;
     word-break: break-all;
     text-align: center;
-    min-height: 130px;
+    min-height: 85px;
+    margin-bottom: 0;
 }
 .message__body > .message {
     font-size: 28px;
     text-align: center;
+    min-height: 100px;
+    margin: 10px 0 0;
 }
 
 div:nth-of-type(odd) > .message__body {
@@ -237,4 +265,25 @@ div:nth-of-type(even) > .message__body p.message {
 }
 .link-to-sn:active {
     transform: scale(0.95);
+}
+
+
+@media (max-width: 991.98px) {  
+    .delete:hover {
+        background-color: rgba(44, 53, 61, 0.144);
+    }
+    .link-to-sn:hover {
+        transform: scale(1);
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0);
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0);
+    }
+
+    .field__input {
+        min-height: 50px;
+        max-height: 50px;  
+    }
+    textarea.field__input{
+        min-height: 200px;
+    }
 }

@@ -1,4 +1,4 @@
-  
+
 require('@babel/polyfill')
 const path = require('path')
 const HTML = require('html-webpack-plugin')
@@ -17,7 +17,7 @@ const isDevelopment = !isProduction
 const conf = {
   context: path.resolve(__dirname, 'src'),
   mode: isProduction ? 'production' : 'development',
-  entry: ['@babel/polyfill','./js/main.js'],
+  entry: ['@babel/polyfill', './js/main.js'],
   output: {
     publicPath: !isProduction ? '/' : '/src/',
     filename: 'js/[name].bundle.js',
@@ -76,7 +76,7 @@ const conf = {
             loader: 'url-loader',
             options: {
               limit: 100000,
-              outputPath: 'img/', 
+              outputPath: 'img/',
             },
           },
         ],
@@ -106,9 +106,9 @@ const conf = {
   plugins: [
     new CleanWebpackPlugin(/* { /* cleanStaleWebpackAssets: false /} */),
     new MiniCssExtractPlugin({
-    
+
       filename: 'css/[name].css',
-  
+
     }),
     new HTML({
       template: 'index.html',
@@ -117,6 +117,9 @@ const conf = {
     new webpack.DefinePlugin({
       isDevelopment: isDevelopment,
       isProduction: isProduction,
+    }),
+    new CopyPlugin({
+      patterns: [{ from: 'img/**' },],
     }),
   ],
   devServer: {

@@ -2,22 +2,28 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '@/css/style.css'
 
 
-import validFrom from "./validForm"
+import ValidFrom from "./ValidForm"
+import {
+    getAllMessages,
+    renderAllMessage,
+    addMessage,
+    delMessage
+} from "./functions"
 
-import { getAllMessages, renderAllMessage, addMessage, delMessage } from "./functions"
-
-const myFrom = new validFrom({
-    mainSelector: "#form",
-    button: '.button'
-})
 
 
-const button = document.querySelector('.button')
-const form = document.querySelector('#form')
 const container = document.querySelector('.messages__content')
+const from = document.querySelector('#form')
 
 
-
+const myFrom = new ValidFrom({
+    mainSelector: "#form",
+    button: '.button',
+    makeAfterClick: {
+        cb: addMessage,
+        arg: [container, from]
+    }
+})
 
 
 if (!container.querySelector('.message')) {
@@ -25,17 +31,7 @@ if (!container.querySelector('.message')) {
         const allMessages = await getAllMessages()
         renderAllMessage(container, allMessages)
     })()
-} else {
-    console.log('no empty')
 }
-
-button.addEventListener('click', async (e) => {
-    e.preventDefault()
-    const add = await addMessage(container, form)
-    if (add) {
-        myFrom.clearForm()
-    }
-})
 
 container.addEventListener('click', async (e) => {
     e.preventDefault()

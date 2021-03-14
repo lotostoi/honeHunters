@@ -2,11 +2,14 @@ const REG_EXPS = {
     'name': ['^[а-яА-ЯёЁA-z ]{2,}$', 'i'],
     'phone': ['^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$'],
     'email': ['^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$'],
-    'message': ['^[?!,.а-яА-ЯёЁA-z1-9 ]{2,}$', 'i']
+    'message': ['[?!,.а-яА-ЯёЁA-z1-9 ]{2,}', 'i']
 }
 
 export default class ValidForm {
     constructor(options) {
+        this.makeAfterClick = options.makeAfterClick
+        this.startValid = false
+        this.cb = options.cb
         this.form = document.querySelector(options.mainSelector) || null
         this.fieldsForValid = options.inputTypeForValid ?? ['name', 'email', 'message']
         this.button = typeof options.button === 'string' ? this.form.querySelector(options.button) : options.button
@@ -17,6 +20,7 @@ export default class ValidForm {
         this._getFieldsForValid()
         this._validForm()
         this._setHandlers()
+        this.buttonOnLoad()
     }
 
     _getFieldsForValid() {
@@ -36,7 +40,7 @@ export default class ValidForm {
 
     set valid(value) {
         this._valid = value
-        value ? this.buttonUnBlock() : this.buttonBlock()
+       // value ? this.buttonUnBlock() : this.buttonBlock()
         return true
     }
     get valid() {
@@ -53,18 +57,18 @@ export default class ValidForm {
     }
     buttonLoad() {
         this.buttonBlock()
-        $.el('span', this.button).classList.add('block')
-        $.el('div', this.button).classList.remove('block')
+        this.button.querySelector('span').classList.add('block')
+        this.button.querySelector('div').classList.remove('block')
     }
     buttonOnLoad() {
-        this.buttonBlock()
-        $.el('span', this.button).classList.remove('block')
-        $.el('div', this.button).classList.add('block')
+        this.buttonUnBlock()
+        this.button.querySelector('span').classList.remove('block')
+        this.button.querySelector('div').classList.add('block')
     }
     clearForm() {
         this.form.reset()
         this.fieldsForValid.forEach(f => f.result = false)
-        console.log(this.fieldsForValid);
+        this.startValid = false
         this._validForm()
     }
     showResult() {
@@ -77,7 +81,8 @@ export default class ValidForm {
         el.classList.remove('block')
         setTimeout(() => { el.classList.add('block') }, 4000)
     }
-    _validForm(name = null, value = null) {
+    _validField(name = null, value = null) {
+        console.log(11)
         this.valid = false
         if (!name) return
         const field = this.fieldsForValid.find(el => el.name === name)
@@ -101,6 +106,11 @@ export default class ValidForm {
         this.valid = this.fieldsForValid.some(field => !field.result) ? false : true
     }
 
+    _validForm() {
+        if (!this.startValid) return
+        this.fieldsForValid.forEach(f => this._validField(f.el.name, f.el.value.trim()))
+    }
+
     _setHandlers() {
         this.form.addEventListener('input', (e) => {
             e.preventDefault()
@@ -108,6 +118,19 @@ export default class ValidForm {
             if (this.fieldsForValid.find(field => field.el === el)) {
                 this._validForm(el.name, el.value.trim())
             }
+        })
+
+        this.button.addEventListener('click', async (e) => {
+            e.preventDefault()
+            this.startValid = true
+            this._validForm()
+            if (!this.valid) return
+            this.buttonLoad()
+            if (this.makeAfterClick) {
+                await this.makeAfterClick.cb(... this.makeAfterClick.arg)
+            }
+            this.buttonOnLoad()
+            this.clearForm()
         })
     }
 }
